@@ -32,8 +32,8 @@
 import $ from 'jquery'
 //import{onMounted} from 'vue';
 // console.log(response.data)
-const url = 'https://192.168.100.139:49157/api/weathers';
-// const url = 'https://www.google.com.tw/'
+// const url = 'https://192.168.100.139:49157/api/weathers';
+const url = 'https://www.google.com.tw/'
 export default {
   name: 'App',
   data() {
