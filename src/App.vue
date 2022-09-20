@@ -10,30 +10,26 @@
         <th scope="col">降雨機率</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td scope="row">2</td>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
+    <tbody id="app">
+      <tr v-for="item in weather" :key="item">
+        <td scope="row">{{item.locationName}}</td>
+        <td>{{item.weatherDescrible}}</td>
+        <td>{{item.minTemperature}}-{{item.maxTemperature}} C</td>
+        <td>{{item.pop}}%</td>
       </tr>
     </tbody>
   </table>
-  <div id="app">
-    <h1>To-Do List</h1>
-    {{weather}}
-  </div>
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-// const axios = require('axios'); 
-import $ from 'jquery'
+const axios = require('axios'); 
+// import $ from 'jquery'
 //import{onMounted} from 'vue';
 // console.log(response.data)
-// const url = 'https://192.168.100.139:49157/api/weathers';
-const url = 'https://www.google.com.tw/'
+const url = 'https://192.168.100.139:49157/api/weathers';
+// const url = 'https://www.google.com.tw/'
 export default {
   name: 'App',
   data() {
@@ -42,14 +38,16 @@ export default {
     }
   },
   mounted () {
-    // axios.get(url).then(response => (this.weather = response))
-    $.ajax({
-      type: 'GET',
-      url: url,
-      success: function (result){
-        console.log(result)
-      }
-    });
+    axios.get(url).then(response => (this.weather = response.data))
+    // $.ajax({
+    //   type: 'GET',
+    //   url: url,
+    //   success: function (result){
+    //     // console.log(result)
+    //     this.weather = result
+    //     console.log(this.weather)
+    //   }
+    // });
 
   },
 }
